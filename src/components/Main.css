@@ -40,7 +40,7 @@
 }
 
 .main-nav a {
-  color: #ccc;
+  color: #fff;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -49,6 +49,8 @@
 
 .main-nav a:hover {
   color: white;
+  transform: scale(1.10);
+  transition: transform 0.2s ease;
 }
 
 .header-buttons {
@@ -80,15 +82,17 @@
 }
 
 .try-now-button {
-  background-color: #4a90e2;
+  background-color: #000000;
 }
 
 .try-now-button:hover {
-  background-color: #5aa1f2;
+  background-color: #404040;
 }
 
 /* Hero Section */
 .hero-section {
+  margin-top: 0px;;
+  margin-right: 700px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -179,7 +183,7 @@
 }
 
 .main-page button {
-  background-color: #6aa3ff;
+  background-color: #ff4242;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -191,7 +195,7 @@
 }
 
 .main-page button:hover {
-  background-color: #4481ff;
+  background-color: #ff2600;
   transform: scale(1.05);
   transition: background-color 0.3s ease;
 }
@@ -199,7 +203,7 @@
 .main-header.sticky {
   position: fixed;
   width: 100%;
-  background-color: rgba(23, 27, 42, 0.8);
+  background-color: #0E1520;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
@@ -294,7 +298,7 @@
 
 .feature-card h3 {
   font-size: 1.5rem;
-  color: #171b2a;
+  color: rgb(208, 57, 57);
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -317,5 +321,7 @@ footer {
 }
 
 footer p {
+  color: white;
+  font-weight: bold;
   margin: 0;
 } 

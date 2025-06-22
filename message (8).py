@@ -35,7 +35,6 @@ summaryChat = summaryModel.start_chat(history=[
             "Do not leave out any potential important information"
 
             "The first word of your response should be the langauge chosen. For example, if the langauge is Spanish, before you summarize the rest of the text, put `Spanish. (summary starts)`"
-            "Do not ever translate the given data, your only role is to keep the name of the language before summarizing the text!"
             "At the end leave a two word response that will act as the title for this appointment"
         ]
     },

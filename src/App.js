@@ -1,10 +1,11 @@
+// src/App.js
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 
 import Sidebar from './components/Sidebar';
+import Background from './components/Background';
 import Main from './components/Main';
-//import Dashboard from './components/Dashboard';
 import Appointments from './components/Appointments';
 import Notifications from './components/Notifications';
 import Settings from './components/Settings';
@@ -23,13 +24,31 @@ const AppointmentsWrapper = ({ user }) => {
   return <Appointments user={user} />;
 };
 
-function App() {
+function AppContent() {
   const [user, setUser] = useState(null);
+  const location = useLocation();
+  const isMainPage = location.pathname === '/';
 
   useEffect(() => {
+    const ensureInitialAppointment = async (userId) => {
+      const { data, error } = await supabase
+        .from('appointments')
+        .select('*')
+        .eq('user_id', userId);
+
+      if (!error && data.length === 0) {
+        await supabase.from('appointments').insert([
+          {
+            user_id: userId,
+            notes: null,
+            dates: new Date().toISOString()
+          }
+        ]);
+      }
+    };
+
     const restoreSession = async () => {
       const { data, error } = await supabase.auth.getSession();
-
       if (error) {
         console.error("Session fetch error:", error.message);
         return;
@@ -46,6 +65,9 @@ function App() {
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setUser(session.user);
+        (async () => {
+          await ensureInitialAppointment(session.user.id);
+        })();
       } else {
         setUser(null);
       }
@@ -57,23 +79,28 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="App">
-        <Sidebar /> {/* Add this line */}
-        <div className="main-content">
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/appointments" element={<AppointmentsWrapper user={user} />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/recordings" element={<Recordings />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
+    <div className={`App ${isMainPage ? 'no-sidebar' : ''}`}>
+      {!isMainPage && <Sidebar />}
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/appointments" element={<AppointmentsWrapper user={user} />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/documents" element={<Documents />} />
+          <Route path="/recordings" element={<Recordings />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </div>
-      <span style={{ display: 'none' }}></span>
-    </Router>
+    </div>
+  );
+}
+
+function App() {
+  return (
+      <Router>
+        <AppContent />
+      </Router>
   );
 }
 

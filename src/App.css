@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', serif;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Remove the conflicting body styles that were causing layout issues */
@@ -20,23 +20,23 @@
 
 .main-content {
   flex: 1;
-  margin-left: 250px;
+  margin-left: 180px;
   padding: 30px;
   transition: margin-left 0.3s ease;
-  background-color: #e6f0fa;
+  background-color:  #EDF0F7;
   min-height: 100vh;
 }
 
 .sidebar-container.collapsed ~ .main-content {
-  margin-left: 70px;
+  margin-left: 0px;
 }
 
 /* Global button styles */
 button {
-  background-color: #6aa3ff;
+  background-color: #e69a9a;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -45,7 +45,6 @@ button {
 }
 
 button:hover {
-  background-color: #4481ff;
   transform: scale(1.05);
   transition: background-color 0.3s ease;
 }
@@ -72,7 +71,7 @@ button:hover {
 /* Sidebar styles */
 .sidebar-container {
   width: 250px;
-  background: #fff;
+  background: #0E1520;
   height: 100vh;
   transition: width 0.3s ease;
   display: flex;
@@ -91,34 +90,39 @@ button:hover {
 .logo-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .logo {
-  width: 30px;
+  width: 55px;
 }
+
 
 .logo-text {
   font-weight: bold;
   margin-left: 10px;
   font-size: 18px;
-  flex: 1;
+  color: #e69a9a;
+  white-space: nowrap;       /* prevents text from wrapping */
 }
 
 .toggle {
   background: none;
   border: none;
   font-size: 20px;
-  color: black;
+  color: white;
   cursor: pointer;
 }
 
 .search-bar {
   margin: 20px 0;
   display: flex;
+  height: 50px;
+  width: 100%;
   align-items: center;
+  justify-content: center;
   background: #f2f2f2;
   padding: 8px;
+  color: black;
   border-radius: 8px;
 }
 
@@ -133,7 +137,7 @@ button:hover {
   margin: 20px 0 10px;
   font-size: 12px;
   font-weight: bold;
-  color: #999;
+  color: #e6e6e6;
 }
 
 .nav-items, .app-items {
@@ -146,24 +150,30 @@ button:hover {
   display: flex;
   align-items: center;
   padding: 10px;
-  color: #333;
+  color: white;
   text-decoration: none;
   position: relative;
   border-radius: 8px;
-  transition: background 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .nav-link i {
-  width: 20px;
-  text-align: center;
+  width: 30px;
+  height: 30px;
+  
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  font-size: 18px;
 }
 
 .nav-link:hover {
-  background: #f0f0f0;
+  background: #e69a9a;
 }
 
 .nav-link.active {
-  background: #e6f0ff;
+  background: #dc7171;
   font-weight: bold;
 }
 
@@ -171,7 +181,7 @@ button:hover {
   position: absolute;
   left: 100%;
   margin-left: 10px;
-  background: #7e5bef;
+  background: #e69a9a;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
@@ -194,7 +204,7 @@ button:hover {
   flex: 1;
   padding: 30px;
   margin-left: 70px;
-  background-color: #e6f0fa;
+  background-color:  #EDF0F7;
   min-height: 100vh;
   transition: margin-left 0.3s ease;
 }
@@ -208,6 +218,7 @@ button:hover {
   font-size: 28px;
   margin-bottom: 20px;
   display: flex;
+  color: black;
   justify-content: space-between;
   align-items: center;
 }
@@ -331,7 +342,7 @@ button:hover {
 }
 
 .notification-icon {
-  background-color: #4d5aa7;
+  background-color: #e69a9a;
   color: white;
   width: 40px;
   height: 40px;
@@ -412,7 +423,7 @@ button:hover {
 }
 
 input:checked + .slider {
-  background-color: #4d5aa7;
+  background-color: #e69a9a;
 }
 
 input:checked + .slider:before {
@@ -513,11 +524,64 @@ input:checked + .slider:before {
 }
 
 .anatomy-viewer {
-  width: 50%;
+  width: 100%;
   height: 600px;
   border: none;
   border-radius: 10px;
 }
+
+.no-sidebar .main-content {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+.appointment-details {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-family: 'Georgia', serif;
+  max-width: 100%;
+}
+
+.appointment-details h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.appointment-details p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.appointment-details strong {
+  color: #e69a9a;
+}
+
+.appointment-details button {
+  background-color: #e69a9a;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.appointment-details button:hover {
+  background-color: #dc7171;
+}
+
+
+
+
+
 
 
 

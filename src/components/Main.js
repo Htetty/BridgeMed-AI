@@ -5,18 +5,10 @@ import './Main.css';
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
-  "https://undfhksklxxtaumrnxxk.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVuZGZoa3NrbHh4dGF1bXJueHhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1NDI2MzksImV4cCI6MjA2NjExODYzOX0.zIMLRuoDDEmZPWG5xk3u3YvqPJnBmoPDFPwqGRNx0-M"
+  process.env.REACT_APP_SUPABASE_URL,
+  process.env.REACT_APP_SUPABASE_ANON_KEY
 );
 
-const loginWithGoogle = async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: window.location.href
-    }
-  });
-};
 
 const Main = () => {
   const navigate = useNavigate();
@@ -27,6 +19,16 @@ const Main = () => {
   const handleGoToDashboard = () => {
     navigate('/recordings');
   };
+
+  const handleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
+  
+    if (error) {
+      console.error('Login failed:', error.message);
+    }
+  };  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,6 +67,7 @@ const Main = () => {
       if (featuresRef.current) {
         const featureCards = featuresRef.current.querySelectorAll('.feature-card');
         featureCards.forEach(card => observer.unobserve(card));
+
       }
     };
   }, []);
@@ -82,9 +85,9 @@ const Main = () => {
           <a href="#about">About Us</a>
         </nav>
         <div className="header-buttons">
-        <button className="login-button" onClick={loginWithGoogle}>Log in</button>
+        <button className="login-button" onClick={handleLogin}>Log in</button>
 
-          <button className="try-now-button">Try Now</button>
+          <button className="try-now-button" onClick={handleGoToDashboard}>Try Now</button>
         </div>
       </header>
 

@@ -5,7 +5,7 @@ export default function BioDigitalViewer() {
   useEffect(() => {
     const interval = setInterval(async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/latest-object');
+        const response = await fetch('http://127.0.0.1:5050/latest-object');
         const data = await response.json();
 
         if (data.objectId && window.lastSeenObjId !== data.objectId) {
@@ -28,7 +28,7 @@ export default function BioDigitalViewer() {
 
     window.human.on('human.ready', function () {
       window.human.send('ui.setDisplay', { all: false });
-      window.human.send('ui.setBackground', { colors: ['black'] });
+      window.human.send('ui.setBackground', { colors: [' black'] });
 
       function orbitContinuously() {
         window.human.send('camera.orbit', { yaw: 0.2 });

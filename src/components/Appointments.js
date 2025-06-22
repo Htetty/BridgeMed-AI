@@ -50,36 +50,40 @@ const Appointments = ({ user }) => {
             <p><strong>Notes:</strong> {selectedAppointment.notes}</p>
             <p><strong>Date:</strong> {selectedAppointment.dates ? new Date(selectedAppointment.dates).toLocaleString() : 'No date provided'}</p>
             <p><strong>Location:</strong> 123 Main St, Anytown, USA</p>
+            {/* Audio player */}
           </div>
         ) : (
           <div className="appointment-grid">
-            {appointments.length > 0 ? (
-              appointments.map((appointment) => (
-                <div
-                  key={appointment.id}
-                  className="appointment-card"
-                  onClick={() => handleCardClick(appointment)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <img src="https://i.pravatar.cc/100?img=34" alt="Doctor" />
-                  <div className="name">
-                    APPOINTMENT<br />
-                    <span>{appointment.notes}</span>
-                  </div>
-                  <div className="time">
-                    {appointment.dates
-                      ? new Date(appointment.dates).toLocaleString()
-                      : 'No date provided'}
-                  </div>
-                  <div className="location">
-                    123 Main St, Anytown, USA
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div style={{ padding: '1rem' }}>No appointments found.</div>
-            )}
-          </div>
+  {appointments.length > 0 ? (
+    appointments
+      .filter(appointment => appointment.title && appointment.title.trim() !== '')
+      .map((appointment) => (
+            <div
+              key={appointment.id}
+              className="appointment-card"
+              onClick={() => handleCardClick(appointment)}
+              style={{ cursor: 'pointer' }}
+            >
+            <img src="https://i.pravatar.cc/100?img=34" alt="Doctor" />
+              <div className="name">
+                APPOINTMENT<br />
+                <span>{appointment.title}</span>
+              </div>
+              <div className="time">
+                {appointment.dates
+                  ? new Date(appointment.dates).toLocaleString()
+                  : 'No date provided'}
+              </div>
+              <div className="location">
+                123 Main St, Anytown, USA
+              </div>
+            </div>
+          ))
+      ) : (
+        <div style={{ padding: '1rem' }}>No appointments found.</div>
+      )}
+    </div>
+
         )}
       </div>
     </>

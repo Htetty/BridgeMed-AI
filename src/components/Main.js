@@ -2,6 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Background from './Background';
 import './Main.css';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  "https://undfhksklxxtaumrnxxk.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVuZGZoa3NrbHh4dGF1bXJueHhrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1NDI2MzksImV4cCI6MjA2NjExODYzOX0.zIMLRuoDDEmZPWG5xk3u3YvqPJnBmoPDFPwqGRNx0-M"
+);
+
+const loginWithGoogle = async () => {
+  await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.href
+    }
+  });
+};
 
 const Main = () => {
   const navigate = useNavigate();
@@ -10,7 +25,7 @@ const Main = () => {
   const featuresRef = useRef(null);
 
   const handleGoToDashboard = () => {
-    navigate('/dashboard');
+    navigate('/recordings');
   };
 
   useEffect(() => {
@@ -67,7 +82,8 @@ const Main = () => {
           <a href="#about">About Us</a>
         </nav>
         <div className="header-buttons">
-          <button className="login-button">Log in</button>
+        <button className="login-button" onClick={loginWithGoogle}>Log in</button>
+
           <button className="try-now-button">Try Now</button>
         </div>
       </header>

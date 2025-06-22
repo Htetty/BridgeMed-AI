@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([
@@ -43,7 +42,6 @@ const Notifications = () => {
 
   return (
     <>
-      <Sidebar />
       
       <div className="main">
         <div className="header">

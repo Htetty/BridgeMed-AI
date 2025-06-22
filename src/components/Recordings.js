@@ -1,10 +1,9 @@
 import React from 'react';
-import Sidebar from './Sidebar';
+import BioDigitalViewer from './BioDigitalViewer';
 
 const Recordings = () => {
   return (
     <>
-      <Sidebar />
       
       <div className="main">
         <div className="header">Recordings</div>
@@ -17,7 +16,9 @@ const Recordings = () => {
           color: '#666'
         }}>
           <h3>Recordings Section</h3>
-          <p>This section will contain voice recordings, transcriptions, and audio files.</p>
+          <div className="anatomy">
+              <BioDigitalViewer />
+          </div>
         </div>
       </div>
     </>

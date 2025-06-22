@@ -1,10 +1,8 @@
 import React from 'react';
-import Sidebar from './Sidebar';
 
 const Documents = () => {
   return (
     <>
-      <Sidebar />
       
       <div className="main">
         <div className="header">Documents</div>

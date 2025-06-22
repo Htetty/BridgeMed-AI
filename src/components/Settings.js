@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
 
 const Settings = () => {
   const [settings, setSettings] = useState({
@@ -19,7 +18,6 @@ const Settings = () => {
 
   return (
     <>
-      <Sidebar />
       
       <div className="main">
         <div className="header">Settings</div>

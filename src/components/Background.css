@@ -27,7 +27,7 @@
     animation-iteration-count: infinite;
 }
 
-
+/*
 .background span:nth-child(0) {
     color: #cfb3ff;
     top: 71%;
@@ -351,4 +351,4 @@
     animation-delay: -39s;
     transform-origin: -23vw 11vh;
     box-shadow: 100vmin 0 13.337488102606962vmin currentColor;
-} 
+} */

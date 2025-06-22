@@ -1,70 +1,89 @@
-import React, { useState } from 'react';
-import Sidebar from './Sidebar';
+import React, { useState, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
 
-const Appointments = () => {
-  const [appointments] = useState([
-    {
-      id: 1,
-      name: 'INITIAL CHECKUP',
-      doctor: 'Dr. Emily Smith',
-      time: '10:00 AM, Tuesday, June 10, 2025',
-      location: '123 Main St, Anytown, USA',
-      image: 'https://i.pravatar.cc/100?img=34'
-    },
-    {
-      id: 2,
-      name: 'PHYSICAL',
-      doctor: 'Dr. Emily Smith',
-      time: '1:00 PM, Monday, June 23, 2025',
-      location: '123 Main St, Anytown, USA',
-      image: 'https://i.pravatar.cc/100?img=34'
-    },
-    {
-      id: 3,
-      name: 'Appointment Name',
-      doctor: 'Doctor Name',
-      time: 'Time, Day, Month, Year',
-      location: 'Location',
-      image: 'https://i.pravatar.cc/150?img=34'
-    },
-    {
-      id: 4,
-      name: 'Appointment Name',
-      doctor: 'Doctor Name',
-      time: 'Time, Day, Month, Year',
-      location: 'Location',
-      image: 'https://i.pravatar.cc/100?img=34'
-    },
-    {
-      id: 5,
-      name: 'Appointment Name',
-      doctor: 'Doctor Name',
-      time: 'Time, Day, Month, Year',
-      location: 'Location',
-      image: 'https://i.pravatar.cc/100?img=34'
+const supabase = createClient(
+  process.env.REACT_APP_SUPABASE_URL,
+  process.env.REACT_APP_SUPABASE_ANON_KEY
+);
+
+const Appointments = ({ user }) => {
+  const [appointments, setAppointments] = useState([]);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      loadAppointments();
     }
-  ]);
+  }, [user]);
+
+  const loadAppointments = async () => {
+    const { data, error } = await supabase
+      .from('appointments')
+      .select('*')
+      .eq('user_id', user.id);
+
+    if (error) {
+      console.error('Error loading appointments:', error.message);
+    } else {
+      setAppointments(data);
+    }
+  };
+
+  const handleCardClick = (appointment) => {
+    setSelectedAppointment(appointment);
+  };
+
+  const handleBackClick = () => {
+    setSelectedAppointment(null);
+  };
 
   return (
     <>
-      <Sidebar />
-      
-      <div className="main">
-        <div className="header">Hello, Username</div>
 
-        <div className="appointment-grid">
-          {appointments.map(appointment => (
-            <div key={appointment.id} className="appointment-card">
-              <img src={appointment.image} alt="Appointment" />
-              <div className="name">{appointment.name}<br />{appointment.doctor}</div>
-              <div className="time">{appointment.time}</div>
-              <div className="location">{appointment.location}</div>
-            </div>
-          ))}
-        </div>
+      <div className="main">
+        <div className="header">Past Appointments</div>
+
+        {selectedAppointment ? (
+          <div className="appointment-details">
+            <button onClick={handleBackClick}>← Back to All Appointments</button>
+            <h2>Appointment Details</h2>
+            <p><strong>Notes:</strong> {selectedAppointment.notes}</p>
+            <p><strong>Date:</strong> {selectedAppointment.dates ? new Date(selectedAppointment.dates).toLocaleString() : 'No date provided'}</p>
+            <p><strong>Location:</strong> 123 Main St, Anytown, USA</p>
+          </div>
+        ) : (
+          <div className="appointment-grid">
+            {appointments.length > 0 ? (
+              appointments.map((appointment) => (
+                <div
+                  key={appointment.id}
+                  className="appointment-card"
+                  onClick={() => handleCardClick(appointment)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <img src="https://i.pravatar.cc/100?img=34" alt="Doctor" />
+                  <div className="name">
+                    APPOINTMENT<br />
+                    <span>{appointment.notes}</span>
+                  </div>
+                  <div className="time">
+                    {appointment.dates
+                      ? new Date(appointment.dates).toLocaleString()
+                      : 'No date provided'}
+                  </div>
+                  <div className="location">
+                    123 Main St, Anytown, USA
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div style={{ padding: '1rem' }}>No appointments found.</div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
 };
 
-export default Appointments; 
+export default Appointments;

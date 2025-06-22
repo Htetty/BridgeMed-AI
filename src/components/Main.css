@@ -1,0 +1,321 @@
+.main-page {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background-color: transparent;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.main-nav {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.main-nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: white;
+}
+
+.header-buttons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.login-button, .try-now-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.login-button {
+  background-color: #2a2a2a;
+}
+
+.login-button:hover {
+  background-color: #3a3a3a;
+}
+
+.try-now-button {
+  background-color: #4a90e2;
+}
+
+.try-now-button:hover {
+  background-color: #5aa1f2;
+}
+
+/* Hero Section */
+.hero-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 1;
+}
+
+.hero-subheading {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.hero-heading {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+  letter-spacing: -1px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.try-button, .work-button {
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  border-radius: 25px;
+}
+
+.try-button {
+  background-color: white;
+  color: #000;
+  padding: 0.8rem 1.5rem;
+}
+
+.try-button:hover {
+  opacity: 0.9;
+}
+
+.work-button {
+  background: none;
+  color: white;
+  padding: 0.8rem 1.5rem;
+}
+
+.work-button:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.main-page footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: transparent;
+  color: #aaa;
+  margin-top: auto;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.main-page .container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  padding: 20px 0;
+  flex: 1;
+}
+
+.main-page section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-page button {
+  background-color: #6aa3ff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.main-page button:hover {
+  background-color: #4481ff;
+  transform: scale(1.05);
+  transition: background-color 0.3s ease;
+}
+
+.main-header.sticky {
+  position: fixed;
+  width: 100%;
+  background-color: rgba(23, 27, 42, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  animation: slideDown 0.35s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 1;
+  padding: 0 2rem;
+}
+
+/* Page Content Below Hero */
+.page-content {
+  position: relative;
+  background-color: #f4f7fc;
+  z-index: 1;
+  padding: 4rem 0;
+}
+
+.content-section {
+  max-width: 1100px;
+  margin: 0 auto 4rem auto;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.content-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content-section h2 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #171b2a;
+  font-weight: 600;
+}
+
+.content-section > p {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Features */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--delay);
+}
+
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  color: #171b2a;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: #171b2a;
+  color: #a9b3d1;
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 1;
+}
+
+footer p {
+  margin: 0;
+} 

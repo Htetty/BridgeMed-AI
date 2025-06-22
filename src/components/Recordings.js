@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { vapi } from './vapi'
 import { translationAssistant } from './translation.assistant'
-import { Phone, PhoneOff, MessageSquare, Clock, Loader2 } from 'lucide-react'
+import { Phone, PhoneOff, Loader2 } from 'lucide-react'
 import BioDigitalViewer from './BioDigitalViewer'
 import { createClient } from '@supabase/supabase-js'
 
@@ -232,13 +232,13 @@ function Recordings() {
           flexDirection: 'column'
         }}>
           <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-            <MessageSquare className="w-6 h-6 text-blue-600" />
-            <h2 className="text-xl font-bold text-gray-800 font-serif">Transcription Script</h2>
+            <h2 className="text-xl font-bold text-gray-800 font-serif">Transcription </h2>
           </div>
 
           {messages.length === 0 && !activeTranscript ? (
             <div className="text-center text-gray-500 mt-20 animate-fade-in">
-              <Clock className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+              <br></br>
+              <br></br>
               <p className="font-serif">No transcription yet.</p>
             </div>
           ) : (
@@ -247,7 +247,7 @@ function Recordings() {
                 <div key={message.id} className="bg-blue-50 rounded-lg p-4 mb-4 border-l-4 border-blue-500 animate-slide-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="flex items-start gap-3">
                     <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">
-                      Dr.
+                      Doctor:
                     </div>
                     <div className="flex-1">
                       <p className="text-gray-800 mb-2 font-serif break-words leading-relaxed">
@@ -326,7 +326,7 @@ function Recordings() {
         }}>
           <h3 style={{ 
             textAlign: 'center', 
-            color: '#666', 
+            color: 'black', 
             marginLeft: '20px',
             marginTop: '-10px',
             fontSize: '18px',

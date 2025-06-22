@@ -91,16 +91,26 @@
 
 /* Hero Section */
 .hero-section {
-  margin-top: 0px;;
-  margin-right: 700px;
-  flex-grow: 1;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* keep column so header/footer stack */
   justify-content: center;
-  align-items: center;
   text-align: center;
-  padding: 2rem;
+  color: white;
+  position: relative;
   z-index: 1;
+  padding: 0 2rem;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
 }
 
 .hero-subheading {
@@ -234,6 +244,15 @@
   padding: 0 2rem;
 }
 
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap; /* Makes it responsive */
+  margin-left: -5%;
+  margin-right: auto;
+}
 /* Page Content Below Hero */
 .page-content {
   position: relative;
@@ -325,3 +344,18 @@ footer p {
   font-weight: bold;
   margin: 0;
 } 
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+}
+
+.hero-image img {
+  margin-left: 50%;
+  width: 200%;
+  height: auto;
+  border-radius: 12px;
+}

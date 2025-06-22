@@ -92,14 +92,23 @@ const Main = () => {
       </header>
 
       <div id="home" className="hero-section">
-        <p className="hero-subheading">AI-Powered Healthcare, Redefined.</p>
-        <h1 className="hero-heading">Introducing BridgeMed-AI</h1>
-        <div className="hero-buttons">
-          <button className="try-button" onClick={handleGoToDashboard}>
-            Try BridgeMed-AI <i className="fa-solid fa-arrow-right"></i>
-          </button>
-        </div>
+  <div className="hero-content">
+    <div className="hero-text">
+      <p className="hero-subheading">AI-Powered Healthcare, Redefined.</p>
+      <h1 className="hero-heading">Introducing BridgeMed-AI</h1>
+      <div className="hero-buttons">
+        <button className="try-button" onClick={handleGoToDashboard}>
+          Try BridgeMed-AI <i className="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
+    </div>
+
+    <div className="hero-image">
+      <img src="mainbridgemedai.png" alt="BridgeMed-AI Illustration" />
+    </div>
+  </div>
+</div>
+
       
       <main className="page-content">
         <section id="about" className="content-section" ref={aboutRef}>
